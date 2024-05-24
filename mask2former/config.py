@@ -112,3 +112,34 @@ def add_maskformer2_config(cfg):
     # Importance sampling parameter for PointRend point sampling during training. Parametr `beta` in
     # the original paper.
     cfg.MODEL.MASK_FORMER.IMPORTANCE_SAMPLE_RATIO = 0.75
+
+    cfg.MODEL.DINOV2 = CN()
+    cfg.MODEL.DINOV2.IMG_SIZE = 592
+    cfg.MODEL.DINOV2.PATCH_SIZE = 16
+    cfg.MODEL.DINOV2.IN_CHANS = 3
+    cfg.MODEL.DINOV2.EMBED_DIM = 768
+    cfg.MODEL.DINOV2.DEPTH = 12
+    cfg.MODEL.DINOV2.NUM_HEADS = 12
+    cfg.MODEL.DINOV2.MLP_RATIO = 4.0
+    cfg.MODEL.DINOV2.DROP_PATH_RATE = 0.3
+    cfg.MODEL.DINOV2.WINDOW_ATTN = [True, True, False, True, True, False, 
+                                    True, True, False, True, True, False],
+    cfg.MODEL.DINOV2.WINDOW_SIZE = [14, 14, None, 14, 14, None,
+                                    14, 14, None, 14, 14, None],
+    cfg.MODEL.DINOV2.PRETRAINED = "pretrained/dinov2_vitb14_pretrain_14to16_torch17.pth"
+
+    # vit comer backbone
+    cfg.MODEL.VIT_COMER = CN()
+    cfg.MODEL.VIT_COMER.PRETRAINED_SIZE = 592
+    cfg.MODEL.VIT_COMER.CONV_INPLANE = 64
+    cfg.MODEL.VIT_COMER.N_POINTS = 4
+    cfg.MODEL.VIT_COMER.DEFORM_NUM_HEADS = 12
+    cfg.MODEL.VIT_COMER.INIT_VALUES = 0.0
+    cfg.MODEL.VIT_COMER.INTERACTION_INDEXES = [[0, 2], [3, 5], [6, 8], [9, 11]]
+    cfg.MODEL.VIT_COMER.WITH_CFFN = True
+    cfg.MODEL.VIT_COMER.CFFN_RATIO = 0.25
+    cfg.MODEL.VIT_COMER.DEFORM_RATIO = 0.5
+
+    cfg.MODEL.VIT_COMER.USE_CTI_TOV = [True, True, True, True]
+    cfg.MODEL.VIT_COMER.USE_CTI_TOC = [True, True, True, True]
+    cfg.MODEL.VIT_COMER.CNN_FEATURE_INTERACTION = [True, True, True, True]
